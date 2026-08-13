@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>intervilla-getstart</title>
+  <meta name="description" content="Master tech, product, and behavioral interviews with real-time AI video simulation, speech recognition, code evaluation, and diagnostic reports." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header Navbar -->
+    <header class="header-navbar no-print">
+      <div class="logo-section" id="btn-logo-home">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
+        </div>
+        <div class="logo-text">
+          INTETRVILLA <span class="logo-sub"></span>
+        </div>
+        <span class="active-role-badge" id="nav-active-role" style="display: none;">Software Engineer</span>
+      </div>
+
+      <div class="header-controls">
+        <div class="clock-display" id="nav-clock">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="clock-text">00:00</span>
+        </div>
+
+        <button class="btn-outlined" id="btn-open-history">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+          Reports
+        </button>
+
+        <button class="btn-icon-ghost" id="btn-open-settings" title="Settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"/><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN VIEW CONTAINER -->
+    <main id="main-content">
+      
+      <!-- 1. SETUP GREEN ROOM VIEW -->
+      <section id="setup-view" class="view-section">
+        <div class="setup-container">
+          <!-- Left: Video Preview Card -->
+          <div class="preview-card">
+            <div class="preview-video-box">
+              <video id="setup-video" autoplay playsinline muted></video>
+              <div id="setup-cam-placeholder" class="cam-placeholder" style="display: none;">
+                <div class="placeholder-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" x2="22" y1="2" y2="22"/><path d="M10.41 10.41A2 2 0 0 0 12 14a2 2 0 0 0 1.59-.59"/><path d="M7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-1"/><path d="M15.5 10.5 22 7v10l-3.5-2"/></svg>
+                </div>
+                <span>Camera is off</span>
+              </div>
+              
+              <div class="meet-name-tag">Candidate (You)</div>
+
+              <div class="preview-controls">
+                <button class="meet-btn" id="setup-toggle-mic" title="Toggle Mic">
+                  <svg id="svg-mic-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+                  <svg id="svg-mic-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><line x1="2" x2="22" y1="2" y2="22"/><path d="M18.89 13.23A7.12 7.12 0 0 0 19 12v-2"/><path d="M5 10v2a7 7 0 0 0 12 5"/><path d="M15 9.34V5a3 3 0 0 0-5.68-1.33"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+                </button>
+                <button class="meet-btn" id="setup-toggle-cam" title="Toggle Camera">
+                  <svg id="svg-cam-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
+                  <svg id="svg-cam-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><line x1="2" x2="22" y1="2" y2="22"/><path d="M10.41 10.41A2 2 0 0 0 12 14a2 2 0 0 0 1.59-.59"/><path d="M7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-1"/><path d="M15.5 10.5 22 7v10l-3.5-2"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="preview-tip">Check your microphone and video feed before joining.</div>
+          </div>
+
+          <!-- Right: Join Card Form -->
+          <div class="join-card">
+            <h1>Ready to join?</h1>
+            <p class="join-sub">Configure your interview topic and start the session.</p>
+
+            <div class="form-group">
+              <label>Interview Domain / Role</label>
+              <select id="select-role" class="gm-select"></select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Target Company</label>
+                <select id="select-company" class="gm-select"></select>
+              </div>
+              <div class="form-group">
+                <label>Seniority</label>
+                <select id="select-difficulty" class="gm-select">
+                  <option value="Junior">Junior</option>
+                  <option value="Mid-Level">Mid-Level</option>
+                  <option value="Senior" selected>Senior</option>
+                  <option value="Staff / Lead">Staff / Lead</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Resume / Background (Optional)</label>
+              <textarea id="input-resume" class="gm-textarea" placeholder="Paste your experience summary..."></textarea>
+            </div>
+
+            <button id="btn-join-interview" class="meet-btn-pill btn-full">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
+              Join interview now
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. INTERVIEW ROOM STAGE VIEW -->
+      <section id="room-view" class="view-section" style="display: none;">
+        <!-- Top Call Header -->
+        <div class="room-header">
+          <div id="room-question-title" class="question-title">
+            Question 1 of 3: Question Title
+          </div>
+          <div class="room-timer" id="room-timer-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span id="room-timer-text">30:00</span>
+          </div>
+        </div>
+
+        <!-- Video Stage Grid -->
+        <div class="room-stage">
+          <div class="video-grid" id="video-grid">
+            <!-- AI Participant Tile -->
+            <div class="meet-tile" id="tile-ai">
+              <div class="tile-canvas-container">
+                <canvas id="canvas-ai-visualizer" width="240" height="180"></canvas>
+                <div class="ai-icon-center">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="12" x="3" y="6" rx="2"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M12 2v4"/><path d="M12 18v4"/></svg>
+                </div>
+              </div>
+              <div class="meet-name-tag">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="12" x="3" y="6" rx="2"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/></svg>
+                <span>AI Interviewer</span>
+              </div>
+              <div class="caption-overlay" id="ai-caption-text">
+                Initializing interview session...
+              </div>
+            </div>
+
+            <!-- Candidate Participant Tile -->
+            <div class="meet-tile" id="tile-candidate">
+              <div class="tile-video-container">
+                <video id="room-candidate-video" autoplay playsinline muted></video>
+                <div id="room-cam-placeholder" class="cam-placeholder" style="display: none;">
+                  <div class="placeholder-icon">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="2" x2="22" y1="2" y2="22"/><path d="M7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-1"/><path d="M15.5 10.5 22 7v10l-3.5-2"/></svg>
+                  </div>
+                  <span>Camera off</span>
+                </div>
+              </div>
+              <div class="meet-name-tag">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#81c995" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span>You</span>
+                <span id="candidate-mic-status" class="mic-status-tag">🎤 Listening...</span>
+              </div>
+              <div class="caption-overlay" id="candidate-caption-text" style="display: none;"></div>
+            </div>
+          </div>
+
+          <!-- Slide-in Technical Workspace Drawer -->
+          <div class="workspace-drawer" id="workspace-drawer" style="display: none;">
+            <div class="drawer-header">
+              <div class="drawer-tabs">
+                <button class="tab-btn active" id="tab-btn-code">Code</button>
+                <button class="tab-btn" id="tab-btn-whiteboard">Whiteboard</button>
+                <button class="tab-btn" id="tab-btn-transcript">Transcript</button>
+              </div>
+              <button class="drawer-close-btn" id="btn-close-drawer" title="Close Workspace">&times;</button>
+            </div>
+
+            <div class="drawer-body">
+              <!-- Code Tab -->
+              <div class="tab-pane active" id="pane-code">
+                <div class="code-toolbar">
+                  <span class="pane-title">Workspace</span>
+                  <select id="code-language" class="gm-select-sm">
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                    <option value="cpp">C++</option>
+                  </select>
+                  <div class="toolbar-actions">
+                    <button class="btn-xs" id="btn-code-reset">Reset</button>
+                    <button class="btn-xs-primary" id="btn-code-run">Run</button>
+                  </div>
+                </div>
+                <div class="code-editor-wrapper">
+                  <div class="line-numbers" id="code-line-numbers">1</div>
+                  <textarea id="code-textarea" spellcheck="false"
+        placeholder="// Write your JavaScript code here..."></textarea>
+                </div>
+                <div class="console-output" id="console-output" style="display: none;">
+                  <div class="console-title">Console Output</div>
+                  <pre id="console-text"></pre>
+                </div>
+              </div>
+
+              <!-- Whiteboard Tab -->
+              <div class="tab-pane" id="pane-whiteboard" style="display: none;">
+                <div class="wb-toolbar">
+                  <div class="wb-tools">
+                    <button class="wb-btn active" id="wb-tool-pen" title="Pen"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg></button>
+                    <button class="wb-btn" id="wb-tool-rect" title="Rectangle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/></svg></button>
+                    <button class="wb-btn" id="wb-tool-circle" title="Circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg></button>
+                    <button class="wb-btn" id="wb-tool-eraser" title="Eraser"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7 21-4.3-4.3a1 1 0 0 1 0-1.4l13-13a1 1 0 0 1 1.4 0l4.3 4.3a1 1 0 0 1 0 1.4l-13 13a1 1 0 0 1-1.4 0Z"/><path d="m22 21-10 0"/></svg></button>
+                  </div>
+                  <div className="wb-colors">
+                    <div class="color-dot active" style="background:#8ab4f8" data-color="#8ab4f8"></div>
+                    <div class="color-dot" style="background:#81c995" data-color="#81c995"></div>
+                    <div class="color-dot" style="background:#ea4335" data-color="#ea4335"></div>
+                    <div class="color-dot" style="background:#ffffff" data-color="#ffffff"></div>
+                  </div>
+                  <button class="btn-xs" id="btn-wb-clear">Clear</button>
+                </div>
+                <div class="wb-canvas-container" id="wb-container">
+                  <canvas id="wb-canvas"></canvas>
+                </div>
+              </div>
+
+              <!-- Transcript Tab -->
+              <div class="tab-pane" id="pane-transcript" style="display: none;">
+                <div class="transcript-list" id="transcript-list">
+                  <div class="empty-transcript">No speech transcript recorded yet.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Voice / Input Bar -->
+        <div class="room-input-bar">
+          <div class="input-bar-inner">
+            <input type="text" id="room-text-input" class="gm-input" placeholder="Speak into your mic or edit your response here..." />
+            <button id="btn-restart-mic" class="meet-btn-sm" title="Restart Microphone">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Bottom Google Meet Control Bar -->
+        <div class="room-controls-bar">
+          <div class="controls-pill">
+            <button class="meet-btn" id="room-btn-mic" title="Mute Mic">
+              <svg id="room-mic-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+              <svg id="room-mic-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><line x1="2" x2="22" y1="2" y2="22"/><path d="M18.89 13.23A7.12 7.12 0 0 0 19 12v-2"/><path d="M5 10v2a7 7 0 0 0 12 5"/><path d="M15 9.34V5a3 3 0 0 0-5.68-1.33"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+            </button>
+            <button class="meet-btn" id="room-btn-cam" title="Toggle Camera">
+              <svg id="room-cam-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
+              <svg id="room-cam-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><line x1="2" x2="22" y1="2" y2="22"/><path d="M10.41 10.41A2 2 0 0 0 12 14a2 2 0 0 0 1.59-.59"/><path d="M7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-1"/><path d="M15.5 10.5 22 7v10l-3.5-2"/></svg>
+            </button>
+            <button class="meet-btn" id="room-btn-hint" title="Ask for Hint">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fdd663" stroke-width="2"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+            </button>
+            <button class="meet-btn" id="room-btn-workspace" title="Toggle Workspace Drawer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="15" x2="15" y1="3" y2="21"/></svg>
+            </button>
+            <button class="meet-btn-pill" id="room-btn-next">
+              <span id="next-btn-text">Next</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+            <button class="meet-btn-end" id="room-btn-end" title="Leave Interview">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67 19.8 19.8 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. REPORT / DIAGNOSTIC ANALYSIS VIEW -->
+      <section id="report-view" class="view-section" style="display: none;">
+        <div class="report-container">
+          <div class="report-header">
+            <div>
+              <h1>Call Ended — Interview Summary</h1>
+              <p class="report-sub" id="report-meta-text">Diagnostic report for Software Engineer</p>
+            </div>
+            <div class="report-actions no-print">
+              <button class="btn-outlined" id="btn-export-json">Export JSON</button>
+              <button class="btn-outlined" id="btn-print-pdf">Save PDF</button>
+              <button class="meet-btn-pill" id="btn-report-retake">Start new interview</button>
+            </div>
+          </div>
+
+          <!-- Main Score Box -->
+          <div class="report-card">
+            <div class="score-grid">
+              <div class="score-column">
+                <div class="score-number" id="report-score-num">0</div>
+                <div class="score-label">Overall Score</div>
+                <div class="hire-badge" id="report-hire-badge">NO HIRE</div>
+              </div>
+              <div class="overview-column">
+                <h2>Performance Overview</h2>
+                <p id="report-summary-p">Your speech cadence, technical concept coverage, and response structure were evaluated.</p>
+              </div>
+              <div class="radar-column">
+                <canvas id="canvas-radar" width="260" height="210"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metrics Row -->
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-label">Speaking Speed</div>
+              <div class="metric-val" id="metric-wpm">0 WPM</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Vocal Fillers</div>
+              <div class="metric-val" id="metric-fillers">0 Fillers</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Total Words</div>
+              <div class="metric-val" id="metric-words">0</div>
+            </div>
+            <div className="metric-card">
+              <div className="metric-label">Duration</div>
+              <div className="metric-val" id="metric-time">0 Mins</div>
+            </div>
+          </div>
+
+          <!-- Question Breakdown -->
+          <h2 class="section-title">Question Analysis</h2>
+          <div class="questions-list" id="report-questions-list"></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- MODAL: PAST REPORTS HISTORY -->
+    <div class="modal-overlay" id="modal-history" style="display: none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Past Interview Sessions</h2>
+          <button class="btn-close" id="btn-close-history">&times;</button>
+        </div>
+        <div class="modal-body" id="history-list-container">
+          <div class="empty-history">No past interview reports saved yet.</div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-danger-sm" id="btn-clear-history">Clear History</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL: SETTINGS & API KEY -->
+    <div class="modal-overlay" id="modal-settings" style="display: none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Settings & API Configuration</h2>
+          <button class="btn-close" id="btn-close-settings">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>OpenAI / Gemini API Key (Optional)</label>
+            <input type="password" id="input-api-key" class="gm-input" placeholder="sk-..." />
+            <p class="field-hint">InterviewAI includes a built-in evaluation engine out-of-the-box. Adding an API key enables cloud LLM follow-ups.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-outlined" id="btn-cancel-settings">Cancel</button>
+          <button class="meet-btn-pill" id="btn-save-settings">Save Settings</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Single Pure Standalone Script (NO ES MODULES, NO BUILD REQUIRED) -->
+  <script src="script.js"></script>
+</body>
+</html>
